@@ -1,0 +1,198 @@
+/* ============================================
+   FINAL WEBINAR DASHBOARD
+   Clean • Bright • Professional • Animated
+============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-start: #eef2ff;
+  --bg-mid: #f0f9ff;
+  --bg-end: #ffffff;
+
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --accent: #6366f1;
+  --accent-soft: #22d3ee;
+  --border: rgba(15, 23, 42, 0.08);
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* Page */
+.dashboard-page {
+  min-height: 100vh;
+  font-family: "Inter", system-ui;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+
+  background: linear-gradient(
+    120deg,
+    var(--bg-start),
+    var(--bg-mid),
+    var(--bg-end)
+  );
+  background-size: 300% 300%;
+  animation: bgMove 12s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card */
+.dashboard-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding: 40px 36px;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.15);
+  animation: cardEnter 0.8s ease forwards;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* BIGGER & CLEAR LOGO */
+.company-logo {
+  width: 206px;
+  height: 96px;
+  object-fit: contain;
+  margin-bottom: 14px;
+
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.dashboard-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.info-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(99, 102, 241, 0.15);
+}
+
+.info-icon {
+  color: var(--accent);
+}
+
+.info-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.info-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Mode */
+.mode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.12);
+  color: #4338ca;
+  font-weight: 600;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 18px 45px rgba(99, 102, 241, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px rgba(99, 102, 241, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    padding: 28px 22px;
+  }
+
+  .company-logo {
+    width: 84px;
+    height: 84px;
+  }
+}
