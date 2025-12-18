@@ -20,6 +20,8 @@ export default function Signup() {
     resume: null,
   });
 
+  const API_BASE = "https://sakyaedu-backend.onrender.com";
+
   const navigate = useNavigate();
 
   const validateEmail = (email) =>
@@ -46,7 +48,7 @@ export default function Signup() {
     Object.entries(files).forEach(([k, v]) => formData.append(k, v));
 
     try {
-      const res = await fetch("https://sakyaedu-backend.onrender.com/signup", {
+      const res = await fetch("${API_BASE}/signup", {
         method: "POST",
         body: formData,
       });
