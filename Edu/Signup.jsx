@@ -46,7 +46,7 @@ export default function Signup() {
     Object.entries(files).forEach(([k, v]) => formData.append(k, v));
 
     try {
-      const res = await fetch("https://sakyaedu-backend.onrender.com/api/signup", {
+      const res = await fetch("https://sakyaedu-backend.onrender.com/signup", {
         method: "POST",
         body: formData,
       });
