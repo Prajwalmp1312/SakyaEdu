@@ -7,6 +7,9 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+
+  console.log("FRONTEND BUILD 19-DEC");
+  
   const [form, setForm] = useState({
     candidatename: "",
     contactNumber: "",
