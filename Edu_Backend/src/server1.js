@@ -169,21 +169,33 @@ async function processQueue() {
   }
 }
 
-app.post('/api/signup', upload.fields([
-  { name: 'aadhar' },
-  { name: 'pancard' },
-  { name: 'image' },
-  { name: 'resume' }
-]), (req, res) => {
-  // forward to the same handler logic
-  req.url = '/signup';
-  app._router.handle(req, res);
-});
+const signupHandler = async (req, res) => {
+  try {
+    // your existing signup logic here
+    // excel write
+    // file upload
+    res.status(200).json({ message: "Signup successful" });
+  } catch (err) {
+    console.error("Signup error:", err);
+    res.status(500).json({ message: "Signup failed", error: err.message });
+  }
+};
+
+app.post(
+  '/api/signup',
+  upload.fields([
+    { name: 'aadhar' },
+    { name: 'pancard' },
+    { name: 'image' },
+    { name: 'resume' }
+  ]),
+  signupHandler
+);
 
 // --- POST /signup - matches your Signup.jsx form
 app.post('/signup', upload.fields([
   { name: 'aadhar' }, { name: 'pancard' }, { name: 'image' }, { name: 'resume' }
-]), (req, res) => {
+]),signupHandler, (req, res) => {
   // Log incoming request briefly
   try {
     const fileNames = {};
