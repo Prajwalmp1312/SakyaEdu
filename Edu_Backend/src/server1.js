@@ -169,6 +169,17 @@ async function processQueue() {
   }
 }
 
+app.post('/api/signup', upload.fields([
+  { name: 'aadhar' },
+  { name: 'pancard' },
+  { name: 'image' },
+  { name: 'resume' }
+]), (req, res) => {
+  // forward to the same handler logic
+  req.url = '/signup';
+  app._router.handle(req, res);
+});
+
 // --- POST /signup - matches your Signup.jsx form
 app.post('/signup', upload.fields([
   { name: 'aadhar' }, { name: 'pancard' }, { name: 'image' }, { name: 'resume' }
