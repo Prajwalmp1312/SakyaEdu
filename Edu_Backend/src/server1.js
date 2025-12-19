@@ -193,6 +193,7 @@ const signupRoute = async (req, res) => {
       Object.keys(req.files).forEach(
         k => fileNames[k] = req.files[k].map(f => f.originalname)
       );
+      console.log(req.files);
     }
 
     console.log('Received signup:', req.body, fileNames);
@@ -417,4 +418,4 @@ process.on('unhandledRejection', (reason) => {
 // Ensure excel exists and start
 ensureExcelFile().catch(e => console.error('Startup ensure failed', e));
 app.listen(5000, () => console.log('Server running on http://localhost:5000'));
-console.log(req.files);
+
