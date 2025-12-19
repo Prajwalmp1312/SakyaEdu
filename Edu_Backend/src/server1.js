@@ -417,3 +417,4 @@ process.on('unhandledRejection', (reason) => {
 // Ensure excel exists and start
 ensureExcelFile().catch(e => console.error('Startup ensure failed', e));
 app.listen(5000, () => console.log('Server running on http://localhost:5000'));
+console.log(req.files);
