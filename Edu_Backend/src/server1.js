@@ -169,17 +169,35 @@ async function processQueue() {
   }
 }
 
-const signupHandler = async (req, res) => {
+const signupRoute = async (req, res) => {
   try {
-    // your existing signup logic here
-    // excel write
-    // file upload
-    res.status(200).json({ message: "Signup successful" });
+    const fileNames = {};
+    if (req.files) {
+      Object.keys(req.files).forEach(
+        k => fileNames[k] = req.files[k].map(f => f.originalname)
+      );
+    }
+
+    console.log('Received signup:', req.body, fileNames);
+
+    const payload = {
+      name: req.body.candidatename || '',
+      phone: req.body.contactNumber || '',
+      email: req.body.email_id || '',
+      aadhar: req.files?.aadhar?.[0]?.originalname || '',
+      pan: req.files?.pancard?.[0]?.originalname || '',
+      image: req.files?.image?.[0]?.originalname || '',
+      resume: req.files?.resume?.[0]?.originalname || '',
+      date: new Date().toLocaleString(),
+    };
+
+    enqueueWrite({ payload, res }); // ✅ THIS sends response after Excel write
   } catch (err) {
-    console.error("Signup error:", err);
-    res.status(500).json({ message: "Signup failed", error: err.message });
+    console.error('Signup error:', err);
+    res.status(500).json({ error: 'Signup failed' });
   }
 };
+
 
 app.post(
   '/api/signup',
@@ -189,13 +207,13 @@ app.post(
     { name: 'image' },
     { name: 'resume' }
   ]),
-  signupHandler
+  signupRoute
 );
 
 // --- POST /signup - matches your Signup.jsx form
 app.post('/signup', upload.fields([
   { name: 'aadhar' }, { name: 'pancard' }, { name: 'image' }, { name: 'resume' }
-]),signupHandler, (req, res) => {
+]),signupRoute, (req, res) => {
   // Log incoming request briefly
   try {
     const fileNames = {};
