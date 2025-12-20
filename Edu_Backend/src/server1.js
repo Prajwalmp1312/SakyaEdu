@@ -17,17 +17,17 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 
-app.delete('/signups', (req, res) => {
-  try {
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath); // delete Excel file
-    }
-    res.json({ message: 'All signup data deleted successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to delete signup data' });
-  }
-});
+// app.delete('/signups', (req, res) => {
+//   try {
+//     if (fs.existsSync(filePath)) {
+//       fs.unlinkSync(filePath); // delete Excel file
+//     }
+//     res.json({ message: 'All signup data deleted successfully' });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'Failed to delete signup data' });
+//   }
+// });
 
 
 // download-signups
